@@ -5,12 +5,18 @@ import arrayHolidays from './dados.js';
 import transformData from './transformData.js';
 import valiadarFeriado from './validarFeriado.js';
 import feriadosMes from './feriadosMes.js';
+import respostaArrayData from './respostaData.js';
 
 const appServer = express();
 appServer.use(cors());
 
-appServer.get('/holidays', (request, response) =>{
+appServer.get('/', (request, response) =>{
     response.send(arrayHolidays);
+});
+
+appServer.get('/holidays', (request, response) =>{
+    const arrayFeriados = respostaArrayData();
+    response.send(arrayFeriados);
 });
 
 appServer.get('/is-today-holiday', (request, response) =>{
